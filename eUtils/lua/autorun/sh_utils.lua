@@ -1,6 +1,6 @@
 // Copyright (c) 2022
 eUtils = eUtils or {}
-eUtils.Version = "1.0.0"
+eUtils.Version = "1.0.2"
 if CLIENT then return end 
 
 // Version Checker
@@ -124,7 +124,7 @@ function printTable(t, ind, done)
     done = done or {}
     ind = ind or 0
     local keys = getTableKey( t )
-    
+
     table.sort( keys , function( a, b) 
         if ( isnumber( a ) && isnumber( b ) ) then return a < b end
 		return tostring( a ) < tostring( b )

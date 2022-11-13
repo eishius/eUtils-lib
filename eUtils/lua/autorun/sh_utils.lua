@@ -11,7 +11,7 @@ hook.Add("Think", "Version.Think", function()
         if eUtils.Version ~= string.Trim( b ) then 
             local r = Color(192, 27, 27)
             local w = color_white
-            MsgC(w, "[", r, "Eishius Utils", w, "] There is an update available at: https://github.com/" )
+            MsgC(w, "[", r, "Eishius Utils", w, "] There is an update available at: https://github.com/eishius/eUtils-lib/releases\n" )
             MsgC(w, "[", r, "Eishius Utils", w, "] Your version: " .. eUtils.Version .. "\n")
             MsgC(w, "[", r, "Eishius Utils", w, "] New version: " .. b .. "\n")
             return 

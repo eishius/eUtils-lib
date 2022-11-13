@@ -108,3 +108,40 @@ function eUtils:getCurrentOs( os )
         end 
     end 
 end 
+
+function getTableKey( tab )
+    local t = {}
+    local i = 1 
+
+    for k, v in pairs( tab ) do 
+        t[i] = k
+        i = i + 1 
+    end 
+    return t 
+end
+
+function printTable(t, ind, done)
+    done = done or {}
+    ind = ind or 0
+    local keys = getTableKey( t )
+    
+    table.sort( keys , function( a, b) 
+        if ( isnumber( a ) && isnumber( b ) ) then return a < b end
+		return tostring( a ) < tostring( b )
+    end)
+
+    for i = 1, #keys do
+		local key = keys[i]
+		local v = t[key]
+		Msg( string.rep( "\t", ind ) )
+		if  ( istable( v ) && !done[v] ) then
+			done[v] = true
+			Msg( tostring( key ) .. ":" .. "\n" )
+			PrintTable ( v, ind + 2, done )
+			done[value] = nil
+		else
+			Msg( tostring( key ) .. "\t=\t" )
+			Msg( tostring( v ) .. "\n" )
+		end
+	end
+end 

@@ -71,6 +71,23 @@ function eUtils:getRandomStr( l )
     return str 
 end 
 
+function eUtils:getRandomI( l ) // Yes it it copy pasted from getRandomstr kys 
+    local str = ""
+    for i = 1, l do 
+        local n = math.random(1, 3)
+        if ( n == 1 ) then 
+            str = str .. math.random(1, 999)
+        else 
+            if ( n == 2 )
+                str = str .. math.random(os.time(), 9999)
+            else
+                str = str .. math.random( os.time() + system.UpTime() + 1, 99999)
+            end
+        end 
+    end 
+    return str 
+end 
+
 function eUtils:tableCopy(t, lt)
     if (t == nil) then return end 
     local c = {}

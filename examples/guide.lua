@@ -51,6 +51,12 @@ function exmaple( str )
     return str 
 end 
 
+// Example: getRandomI 
+function exmaple( i )
+    if i == 0 then return end 
+    i = eUtils:getRandomI( math.random( 1, 10 ) )
+    return i 
+end 
 
 // Example: tableCopy 
 

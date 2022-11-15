@@ -167,7 +167,7 @@ end
 function eUtils:versionChecker( version, url, releases )
     local t = {}
     t.url = url 
-    t.version = version 
+    t.version = tostring( version ) or version 
     if version == "" or t.version != version then return end
     if release == "" then return end 
     if t.url == "" or !string.StartWith(t.url, "https://") then return end 

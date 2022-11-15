@@ -129,3 +129,10 @@ function example( c )
         return c 
     end 
 end 
+
+
+// Example versionChecker 
+hook.Add("Think", "example.versionChecker", function() 
+    hook.Remove("Think", "example.versionChecker")
+    eUtils:versionChecker("1.0.0", "https://example_version_url", "https://example_update_url")
+end)

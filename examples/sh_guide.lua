@@ -136,3 +136,12 @@ hook.Add("Think", "example.versionChecker", function()
     hook.Remove("Think", "example.versionChecker")
     eUtils:versionChecker("1.0.0", "https://example_version_url", "https://example_update_url")
 end)
+
+// Example: Console()
+function example()
+    for k, v in pairs( player.GetAll() ) do 
+        eUtils:Console("Player: " .. v:Name() .. " isPlayer", "exmaple prefix", true, false, false)
+        eUtils:Console("Player: " .. v:Name() .. " isPlayer", "exmaple prefix", false, true, false)
+        eUtils:Console("Player: " .. v:Name() .. " isPlayer", "exmaple prefix", false, false, true)
+    end
+end

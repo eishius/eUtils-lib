@@ -2,6 +2,7 @@
 eUtils = eUtils or {}
 eUtils.Version = "1.2.2"
 eUtils.Debug = false
+eUtils.Experimental = false
 if CLIENT then return end 
 
 // Version Checker
@@ -252,3 +253,35 @@ if eUtils.Debug == true then
         hook.Add("PlayerConnect", "eUtils:PlayerConnect", eUtils:playerConnect)
     end 
 end
+
+// Console 
+function eUtils:Console(..., name, isServer, isChat, isDebug) // I know this code is ugly
+    if ... == nil or ... == "" then return end 
+    if name == "" or name == nil then return end
+    local r, g, b, color
+    color = r, g, b
+    if color.r <= 0 or color.r == "" then return end 
+    if color.g <= 0 or color.g == "" then return end 
+    if color.b <= 0 or color.b == "" then return end
+    if isServer == true and SERVER then
+        isChat = false
+        isDebug = false
+        MsgC(color_white, "[", Color(color.r or 255, color.g or 255, color.b or 255, 255) name or "eUtils", color_white, "]:", Color(0, 10, 255, 255), ...  ) 
+    else
+        if isChat == true then 
+            isServer = false
+            isDebug = false
+            chat.AddText( color_white, "[", Color(color.r or 255, color.g or 255, color.b or 255, 255) name or "eUtils", color_white, "]:", Color(0, 10, 255, 255), ...  )
+        else 
+            if isDebug == true then 
+                isServer = false 
+                isChat = false
+                if SERVER then 
+                    MsgC(color_white, "[", Color(color.r or 255, color.g or 255, color.b or 255, 255) name or "eUtils", color_white, "]:", Color(99, 255, 50, 255), ...  ) 
+                else
+                    chat.AddText( color_white, "[", Color(color.r or 255, color.g or 255, color.b or 255, 255) name or "eUtils", color_white, "]:", Color(99, 255, 50, 255), ...  )
+                end
+            end 
+        end 
+    end 
+end 

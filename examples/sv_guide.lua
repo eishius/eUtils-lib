@@ -19,3 +19,9 @@ function sv_example( url )
     return eUtils:formHttp( url )
 end 
 
+// Example: familyShare( p, sid, punish )
+function sv_example( id )
+    if id == "" or id == nil then return end
+    id = self:SteamID()
+    return eUtils:familyShare(id, "kick")
+end 

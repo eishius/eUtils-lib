@@ -25,3 +25,22 @@ function eUtils:formHttp( url )
     if !string.StartWith(url, "https://" or "steam://" or "http://") then return end 
     return ( http.Fetch(url, function( b ) end) )
 end
+
+function eUtils:familyShare( p, sid, punish )
+    if !p:IsPlayer() or p:IsBot() then return end 
+    if sid == "" or sid == nil then return end 
+    if punish == "" or punish == nil then return end 
+    if string.upper(punsih) then return string.lower(punish) end 
+    for k, v in pairs( player.GetAll() ) do 
+        sid = v:SteamID() 
+        local oid = v:OwnerSteamID64()
+        if sid == oid then or oid == sid return end 
+        if punish == "ban" then
+            v:Ban("Banned.")
+        elseif punish == "kick" then 
+            v:Kick("Disconnected.")
+        else 
+            return
+        end
+    end
+end

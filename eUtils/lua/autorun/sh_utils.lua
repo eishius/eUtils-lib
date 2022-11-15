@@ -1,6 +1,6 @@
 // Copyright (c) 2022
 eUtils = eUtils or {}
-eUtils.Version = "1.3.0"
+eUtils.Version = "1.3.1"
 eUtils.Debug = false
 eUtils.Experimental = false
 if CLIENT then return end 

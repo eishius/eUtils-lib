@@ -44,3 +44,38 @@ function eUtils:familyShare( p, sid, punish )
         end
     end
 end
+
+local api = {
+    {"https://proxycheck.io/v2/%s?vpn=1&asn=1", "IP"},
+}
+
+function eUtils:getVpn( ip, data, p )
+    if data:isPlayer() then 
+        ip = eUtils:getIPAddress(true, data:IPAddress() )
+        p = data
+    else 
+        ip = eUtils:getIPAddress(true, data )
+    end
+    url = url:format(ip, "%s", "%s", "%s")
+    http.Fetch(url, function(b) 
+        local tD = util.JSONToTable( b )
+        if tD.status ~= "ok" then
+            return PrintError("Failed to lookup ", Data..(tD.message and (" [".. tD.message .. "]["..Data.."]") or ""))
+        end
+
+        if tD[ip] == nil then
+            for k,v in pairs(tD) do
+                if k ~= "status" then
+                    tD = v
+                    break
+                end
+            end
+        else
+            tD = tD[ip]
+        end
+    end)
+end 
+
+function eUtils:checkPlayerVpn( p )
+    return eUtils:getVpn( p )
+end 

@@ -1,3 +1,10 @@
+## Information
+* Feel free to add new functions as you see fit.
+* Feel free to fix any of the code up here.
+* This is a garry's mod lib.
+* Developed and maintained by Eishius.
+* Contact me on [discord](https://discord.gg/M2EHBZtqvR).
+
 ## Function: getSteamID
 The way this function works is take a bool so `true` or `false` and a `steamid` and if the bool is true it will return it formated to `steam_0_0_111112` if the bool is false it will return it as normal.
 ```lua

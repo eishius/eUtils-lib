@@ -107,4 +107,38 @@ function example( t )
 end 
 
 ```
+## Function: versionChecker
+The way this function works is it grabs a string so 1.0.0 and grabs a url so https://raw.version_url.com then grabs the update url so https://update_url.com.
+```lua
+hook.Add("Think", "example.versionChecker", function() 
+    hook.Remove("Think", "example.versionChecker")
+    eUtils:versionChecker("1.0.0", "https://example_version_url", "https://example_update_url")
+end)
+```
+
+## Function: dataLoad
+The way this function works is it grabs a steamid and a folder and a bool and converts the steamid into a openable file format and then grabs the data and returns the data.
+```lua
+function example()
+    if !self:IsPlayer() or self:IsBot() then return end 
+    for k, v in pairs( player.GetAll() ) do 
+       local m = eUtils:dataLoad(self:SteamID(), "example_folder", "money", true)
+        return m or  self:SetNWInt("money", m)
+    end 
+end 
+```
+
+## Function: dataSave
+The way this function works is it grabs a steamid converts it into a format that can be a file name grabs the inputed folder creates the folder with the steamid.dat and writes the data inputed with a bool value
+```lua
+function example( p )
+    if !p:IsPlayer() or p:IsBot() then return end 
+    local d = {}
+    d.name = p:Name()
+    d.id = p:SteamID64()
+    for k, v in pairs( player.GetAll() ) do 
+        eUtils:dataSave( v:SteamID(), "example_folder", d, true)
+    end 
+end 
+```
 

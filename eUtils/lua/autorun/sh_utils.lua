@@ -1,6 +1,7 @@
 // Copyright (c) 2022
 eUtils = eUtils or {}
 eUtils.Version = "1.0.2"
+eUtils.Debug = false
 if CLIENT then return end 
 
 // Version Checker
@@ -126,7 +127,7 @@ function eUtils:getCurrentOs( os )
     end 
 end 
 
-function getTableKey( tab )
+function eUtils:getTableKey( tab )
     local t = {}
     local i = 1 
 
@@ -137,7 +138,7 @@ function getTableKey( tab )
     return t 
 end
 
-function printTable(t, ind, done)
+function eUtils:printTable(t, ind, done)
     done = done or {}
     ind = ind or 0
     local keys = getTableKey( t )
@@ -162,3 +163,92 @@ function printTable(t, ind, done)
 		end
 	end
 end 
+
+function eUtils:versionChecker( version, url, releases )
+    local t = {}
+    t.url = url 
+    t.version = version 
+    if version == "" or t.version != version then return end
+    if release == "" then return end 
+    if t.url == "" or !string.StartWith(t.url, "https://") then return end 
+    http.Fetch(t.url, function( b )
+        if t.version ~= string.Trim( b ) then 
+            local r = Color(192, 27, 27)
+            local w = color_white
+            MsgC(w, "[", r, "Eishius Utils", w, "] There is an update available at:" .. releases .. "\n" )
+            MsgC(w, "[", r, "Eishius Utils", w, "] Your version: " .. eUtils.Version .. "\n")
+            MsgC(w, "[", r, "Eishius Utils", w, "] New version: " .. b .. "\n")
+            return 
+        end 
+    end)
+end
+
+function eUtils:dataSave(id, path, name, data, bool)
+    local a = eUtils:getSteamID(true, self:SteamID())
+    path = (path or "eUtils")
+    file.CreateDir( path )
+    file.CreateDir( path .. "/" .. a  )
+    path = ( path .. "/" .. a .. "/" )
+    path = ( path .. name .. ".dat" )
+    file.Write( path, ( bool and util.TableToJSON( data, true ) or data ) )
+end 
+
+function eUtils:dataLoad( id, path, name, bool )
+    local a = eUtils:getSteamID(true, self:SteamID())
+    path = ( path or "eUtils" )
+    path = ( path .. "/" .. a .. "/" )
+    path = ( path .. name .. ".dat" )
+    if file.Exists( path, "DATA" ) then
+        local r = file.Read( path, "DATA" )
+        return ( bool and util.JSONToTable( r ) or r )
+    end
+    return false
+end 
+
+// Debug eUtils
+if eUtils.Debug == true then 
+    function eUtils:playerConnect( folder, save, n, ip )
+        local nIp = tostring( ip )
+        if nIp != ip then return end
+        for k, v in pairs( players ) do
+            if i == 0 then return end 
+            n = v:Name()
+            nIp = string.sub(nIp, 1, string.find(nIp, ":", 1))
+            i = i + 1 
+            local str = ""
+            str = str .. " [ " .. i .. " ] [ " .. nip .. " ] [ " .. n .. " ] " 
+            if save == true then 
+                timer.Simple(0.5,  dataSave( id, folder, str, true ))
+            else 
+                save = false 
+                return save 
+            end 
+            return 
+        end 
+    end 
+
+    function eUtils:getChance()
+        local c = 0
+        c = c + 1
+        for i = 1, 100 do 
+            if c >= 1 then 
+                c = math.Rand(math.random(c, 5), 100)
+            else
+                if c > 50 then 
+                    c = math.Rand(math.random(1, c), 100) 
+                else 
+                    c = math.Rand(math.random(c, 15), 100)
+                end 
+            end 
+            return c
+        end 
+        return c or 0 
+    end 
+    
+    // playerConnect("eishius", ip, true)
+    if SERVER then 
+        hook.Add("PlayerConnect", "eUtils:PlayerConnect", eUtils:playerConnect)
+    elseif CLIENT then
+        hook.Add("PlayerConnect", "eUtils:PlayerConnect", eUtils:playerConnect)
+    end 
+end

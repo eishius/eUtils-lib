@@ -91,3 +91,41 @@ function example( t )
 end 
 
 
+// Example dataSave
+function example( p )
+    if !p:IsPlayer() or p:IsBot() then return end 
+    local d = {}
+    d.name = p:Name()
+    d.id = p:SteamID64()
+    for k, v in pairs( player.GetAll() ) do 
+        eUtils:dataSave( v:SteamID(), "example_folder", d, true)
+    end 
+end 
+
+// Example dataLoad
+function example()
+    if !self:IsPlayer() or self:IsBot() then return end 
+    for k, v in pairs( player.GetAll() ) do 
+       local m = eUtils:dataLoad(self:SteamID(), "example_folder", "money", true)
+        return m or  self:SetNWInt("money", m)
+    end 
+end 
+
+// Debug Example playerConnect 
+function example()
+    for k, v in pairs( player.GetAll() ) do 
+        if eUtils:playerConnect( true )  then 
+            eUtils:playerConnect( "example_folder", true)
+        end
+    end 
+end 
+
+// Debug Example getChance
+function example( c )
+    if c == "" then return end 
+    local i = tostring( c )
+    for i = 1, 10 do 
+        c = eUtils:getChance( i )
+        return c 
+    end 
+end 

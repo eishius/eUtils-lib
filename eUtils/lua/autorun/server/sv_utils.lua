@@ -78,7 +78,7 @@ function eUtils:formHttp( url )
     return ( http.Fetch(url, function( b ) end) )
 end
 
-function eUtils:getALLIPAddress()
+function eUtils:getAllIPAddress()
     for k, v in pairs( player.GetAll() ) do 
         if v:IsBot() then return "BOT" end 
         return v:IPAddress() 

@@ -1,6 +1,6 @@
 // Copyright (c) 2022
 eUtils = eUtils or {}
-eUtils.Version = "1.3.2"
+eUtils.Version = "1.3.1"
 eUtils.Debug = false
 eUtils.Experimental = false
 if CLIENT then return end 
@@ -20,6 +20,7 @@ hook.Add("Think", "Version.Think", function()
         end
     end)
 end)
+
 
 // Meta table
 local pMeta = FindMetaTable("Player")

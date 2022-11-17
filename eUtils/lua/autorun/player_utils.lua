@@ -85,17 +85,24 @@ end
 // Player Utils
 
 // Util: getPlayerIP 
-function eUtils.getPlayerIP()
-    return self:IPAddress() or string.sub( tostring( self:IPAddress() ), 1, string.find( tostring( self:IPAddress() ), ":", 1) )
-end 
-
+function eUtils.getPlayerIP( b )
+    if ( b == true ) then 
+        string.sub( tostring( self:IPAddress() ), 1, string.find( tostring( self:IPAddress() ), ":", 1) )
+    else
+        return self:IPAddress()
+    end 
+end
 // Util: getPlayer32Bit
-function eUtils.getPlayer32Bit()
-    return self:SteamID() and string.Replace( self:SteamID(), ":", "_") or string.lower( string.Replace( self:SteamID(), ":", "_") )
+function eUtils.getPlayer32Bit( b )
+    if ( b == true ) then 
+        string.Replace( self:SteamID(), ":", "_") or string.lower( string.Replace( self:SteamID(), ":", "_") )
+    else
+        return self:SteamID()   
+    end
 end
 
 // Util: getPlayer64Bit
-function eUtils.getPlayer32Bit()
+function eUtils.getPlayer64Bit()
     return self:SteamID64()
 end
 

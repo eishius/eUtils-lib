@@ -1,3 +1,4 @@
+// Lua Dumpers here: https://youtu.be/34Ig3X59_qA
 // Copyright (c) 2022
 eUtils = eUtils or {}
 eUtils.Version = "1.3.4"
@@ -5,7 +6,8 @@ eUtils.Debug = false
 eUtils.Experimental = false
 if CLIENT then return end 
 
-// Version Checker
+// Version Checker -- From pixelui version checker because its good code
+-- https://github.com/TomDotBat/pixel-ui all credits goes to you tom
 hook.Add("Think", "Version.Think", function()
     hook.Remove("Think", "Version.Think") 
     local url = "https://raw.githubusercontent.com/eishius/eUtils-lib/main/Version"

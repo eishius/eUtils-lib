@@ -1,26 +1,6 @@
+// Lua Dumpers here: https://youtu.be/34Ig3X59_qA
 // Data Utils
 
-function eUtils:dataSave(id, path, name, data, bool)
-    local a = eUtils:getSteamID(true, self:SteamID())
-    path = (path or "eUtils")
-    file.CreateDir( path )
-    file.CreateDir( path .. "/" .. a  )
-    path = ( path .. "/" .. a .. "/" )
-    path = ( path .. name .. ".dat" )
-    file.Write( path, ( bool and util.TableToJSON( data, true ) or data ) )
-end 
-
-function eUtils:dataLoad( id, path, name, bool )
-    local a = eUtils:getSteamID(true, self:SteamID())
-    path = ( path or "eUtils" )
-    path = ( path .. "/" .. a .. "/" )
-    path = ( path .. name .. ".dat" )
-    if file.Exists( path, "DATA" ) then
-        local r = file.Read( path, "DATA" )
-        return ( bool and util.JSONToTable( r ) or r )
-    end
-    return false
-end 
 
 // Table Utils
 function eUtils:printTable(t, ind, done)

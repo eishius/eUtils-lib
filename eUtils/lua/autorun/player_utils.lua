@@ -73,12 +73,13 @@ end
 
 // Util: nwFloat
 function eUtils:nwFloat( float, k, f )
-    return self:getNWFloat(k, f) >= float and true or false 
+    return self:getNWFloat(k, f) >= float
 end 
 
 // Util: nwAngle
 function eUtils:nwAngle( ang, k, f )
-    return self:getNWAngle(k, f) >= ang and Angle(ang, ang, ang) or Angle(0, 0, 0)
+    ang = Angle(22, 21, 52)
+    return self:getNWAngle(k, f) >= ang or Angle(0, 0, 0)
 end 
 
 // Player Utils

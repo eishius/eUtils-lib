@@ -58,7 +58,7 @@ end
 
 
 function eUtils:dataSave(id, path, name, data, bool)
-    local a = eUtils:getSteamID(true, self:SteamID())
+    local a = eUtils.getPlayer32Bit( true )
     path = (path or "eUtils")
     file.CreateDir( path )
     file.CreateDir( path .. "/" .. a  )
@@ -68,7 +68,7 @@ function eUtils:dataSave(id, path, name, data, bool)
 end 
 
 function eUtils:dataLoad( id, path, name, bool )
-    local a = eUtils:getSteamID(true, self:SteamID())
+    local a = eUtils.getPlayer32Bit( true )
     path = ( path or "eUtils" )
     path = ( path .. "/" .. a .. "/" )
     path = ( path .. name .. ".dat" )

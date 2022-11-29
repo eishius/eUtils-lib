@@ -1,5 +1,5 @@
 function eUtils:dataSave(id, path, name, data, bool)
-    local a = eUtils:getSteamID(true, self:SteamID())
+    local a = eUtils.getPlayer32Bit( true )
     path = (path or "eUtils")
     file.CreateDir( path )
     file.CreateDir( path .. "/" .. a  )
@@ -9,7 +9,7 @@ function eUtils:dataSave(id, path, name, data, bool)
 end 
 
 function eUtils:dataLoad( id, path, name, bool )
-    local a = eUtils:getSteamID(true, self:SteamID())
+    local a = eUtils.getPlayer32Bit( true )
     path = ( path or "eUtils" )
     path = ( path .. "/" .. a .. "/" )
     path = ( path .. name .. ".dat" )
@@ -61,39 +61,5 @@ function eUtils:getAllSteamID64()
     for k, v in pairs( player.GetAll() ) do
         if v:IsBot() or !v:IsPlayer() then return end 
         return v:SteamID64() 
-    end 
-end
-
-function eUtils:getAllNames()
-    for k, v in pairs( player.GetAll() ) do 
-        if v:IsBot() or !v:IsPlayer() then return end 
-        return v:Name()
-    end 
-end 
-
-function eUtils:getAllNicks()
-    for k, v in pairs( player.GetAll() ) do 
-        if v:IsBot() or !v:IsPlayer() then return end 
-        return v:Nick()
-    end 
-end 
-
-function eUtils:getAllLinks()
-    for k, v in pairs( player.GetAll() ) do 
-        if !v:IsPlayer() or v:IsBot() then return end 
-        local str = ""
-        str = str .. "[" .. v:Name() .. ": " .. i .. "https://steamcommunity.com/id/" .. v:SteamID64()
-        return str 
-    end 
-end 
-
-function eUtils:getMaxPlayers()
-    local i = 0 
-    for k, v in pairs( player.GetAll() ) do 
-        if !v:IsPlayer() or v:IsBot() then return end 
-        local str = ""
-        i = i + 1 
-        str = str .. "Player(s): " .. i 
-        return str
     end 
 end

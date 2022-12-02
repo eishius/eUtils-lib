@@ -63,3 +63,38 @@ function eUtils:getAllSteamID64()
         return v:SteamID64() 
     end 
 end
+
+// Server commands: this is in testing use at your own risk.
+eUtils.Commands = {}
+function eUtils.Commands:getPlayers()
+    for k, v in pairs( player.GetAll() ) do 
+        if v:IsBot() then return end 
+        local str = ""
+        str = str .. "Player: " .. v:Name() .. ", " .. v:SteamID()
+        return str
+    end 
+end 
+
+function eUtils.Commands:playerIP( p )
+    for k, v in pairs( player.GetAll() ) do 
+        if v:IsBot() then return end 
+        local str = ""
+        str = str .. "IpAddress " .. tostring( p:IPAddress() ) .. " for player " .. v:Name()
+        return str 
+    end
+end
+
+function eUtils.Commands:getBots()
+    for k, v in pairs( player.GetBots() ) do 
+        local str = ""
+        str = str .. "Bot: " .. v:Name()
+        return str
+    end 
+end
+
+-- Just in case
+if SERVER then 
+    concommand.Add("eUtils.Commands:getPlayers", eUtils.Commands:getPlayers())
+    concommand.Add("eUtils.Commands:getPlayers", eUtils.Commands:getBots())
+    concommand.Add("eUtils.Commands:playerIP", eUtils.Commands:playerIP())
+end 
